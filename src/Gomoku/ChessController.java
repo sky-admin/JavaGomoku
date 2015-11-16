@@ -27,20 +27,32 @@ public class ChessController {
     String ip;
     String port;
     MyPanel mp;
+    int[][] arr;
+    int[][] opponentArr;
 
     public ChessController(MyPanel mp) {
         this.mp = mp;
     }
 
     public String arrToString(int[][] arr) {
-        String temp = "";
-
+        String temp="";
+        int x=arr.length;
+        for(int i=0;i<arr.length;i++)
+            for(int j=0;j<arr.length;j++)
+                temp+=String.valueOf(arr[i][j]);
         return temp;
     }
+
     public int[][] StringToArr(String s) {
-        int[][] arr = new int[15][15];
+        int num=(int)Math.sqrt(s.length());
+        int[][] temp=new int[num][num];
+        for(int i=0;i<arr.length;i++)
+            for(int j=0;j<arr.length;j++)
+            {
+              temp[i][j]=Integer.parseInt(s.substring(i*num+j, i*num+j+1));
+            }
         
-        return arr;
+        return temp;
     }
 
     public void run() throws InterruptedException, IOException {
@@ -74,6 +86,33 @@ public class ChessController {
         } catch (IOException ex) {
             Logger.getLogger(ChessController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 
+    /**
+     * @return the ip
+     */
+    public String getIp() {
+        return ip;
+    }
+
+    /**
+     * @param ip the ip to set
+     */
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    /**
+     * @return the port
+     */
+    public String getPort() {
+        return port;
+    }
+
+    /**
+     * @param port the port to set
+     */
+    public void setPort(String port) {
+        this.port = port;
     }
 }

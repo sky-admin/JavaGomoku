@@ -43,10 +43,11 @@ public class ChessController {
         return arr;
     }
 
-    public void run() throws InterruptedException {
+    public void run() throws InterruptedException, IOException {
         while (true) {
             output.println(arrToString(mp.getArr()));
             output.flush();
+            mp.setOpponentArr(StringToArr(input.readLine()));
             mp.repaint();
             Thread.sleep(1000);
         }

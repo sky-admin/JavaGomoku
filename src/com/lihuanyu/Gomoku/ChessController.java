@@ -45,7 +45,6 @@ public class ChessController {
 
     public void run() throws InterruptedException {
         while (true) {
-
             output.println(arrToString(mp.getArr()));
             output.flush();
             mp.repaint();

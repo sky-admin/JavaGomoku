@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lihuanyu.Gomoku;
+package Gomoku;
 
 /**
  *
@@ -26,7 +26,7 @@ public class MyFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        myPanel1 = new com.lihuanyu.Gomoku.MyPanel();
+        myPanel1 = new Gomoku.MyPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +81,6 @@ public class MyFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.lihuanyu.Gomoku.MyPanel myPanel1;
+    private Gomoku.MyPanel myPanel1;
     // End of variables declaration//GEN-END:variables
 }

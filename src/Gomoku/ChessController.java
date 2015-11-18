@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  * @author Administrator
  */
 public class ChessController {
-
+    
     BufferedReader input;
     PrintWriter output;
     String ip;

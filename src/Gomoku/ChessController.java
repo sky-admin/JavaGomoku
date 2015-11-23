@@ -14,6 +14,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,6 +50,7 @@ public class ChessController extends Thread{
         try {
             ServerSocket serverSocket = new  ServerSocket(50000);
             Socket client=serverSocket.accept();
+            JOptionPane.showMessageDialog(null, "有客户端链接到了本机的50000端口");
             input=new BufferedReader(new InputStreamReader(client.getInputStream()));
             output=new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
         } catch (IOException ex) {

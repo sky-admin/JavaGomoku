@@ -7,7 +7,6 @@ package Gomoku;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -18,32 +17,75 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Administrator
+ * @author skyADMIN
  */
-public class ChessController {
-    
+public class ChessController extends Thread{
+    private int status;
+    MyPanel panel;
     BufferedReader input;
     PrintWriter output;
-    String ip;
-    String port;
-    MyPanel mp;
+    Socket socket;
+    private String ip;
+    private String port;
     int[][] arr;
     int[][] opponentArr;
-
-    public ChessController(MyPanel mp) {
-        this.mp = mp;
+    public ChessController(MyPanel panel,int status){
+        this.status = status;
+        this.panel=panel;
     }
+    public void client(){
+        try {
+            Socket client=new Socket(ip,Integer.parseInt(port));
+            input=new BufferedReader(new InputStreamReader(client.getInputStream()));
+            output=new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(ChessController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ChessController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-    public String arrToString(int[][] arr) {
+    }
+    public void server(){
+        try {
+            ServerSocket serverSocket = new  ServerSocket(50000);
+            Socket client=serverSocket.accept();
+            input=new BufferedReader(new InputStreamReader(client.getInputStream()));
+            output=new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
+        } catch (IOException ex) {
+            Logger.getLogger(ChessController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     public void run(){
+         if (status == 0) {
+             this.server();
+         }
+         if(status == 1){
+             this.client();
+         }
+        while(true){
+            try {
+                arr=panel.getArr();
+                String myResult=arrToString(arr);
+                output.println(myResult);
+                output.flush();
+                opponentArr=stringToArr(input.readLine());
+                panel.setOpponentArr(opponentArr);
+                panel.repaint();
+                Thread.sleep(1000);
+            } catch (Exception ex) {
+                Logger.getLogger(MyPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    public String arrToString(int[][] arr){
         String temp="";
         int x=arr.length;
         for(int i=0;i<arr.length;i++)
             for(int j=0;j<arr.length;j++)
                 temp+=String.valueOf(arr[i][j]);
         return temp;
-    }
-
-    public int[][] StringToArr(String s) {
+    }   
+    public int[][] stringToArr(String s){
         int num=(int)Math.sqrt(s.length());
         int[][] temp=new int[num][num];
         for(int i=0;i<arr.length;i++)
@@ -53,39 +95,6 @@ public class ChessController {
             }
         
         return temp;
-    }
-
-    public void run() throws InterruptedException, IOException {
-        while (true) {
-            output.println(arrToString(mp.getArr()));
-            output.flush();
-            mp.setOpponentArr(StringToArr(input.readLine()));
-            mp.repaint();
-            Thread.sleep(1000);
-        }
-    }
-
-    public void client() {
-        try {
-            Socket socket = new Socket(ip, Integer.parseInt(port));
-            input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(ChessController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ChessController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void server() {
-        try {
-            ServerSocket ss = new ServerSocket(50000);
-            Socket socket = ss.accept();
-            input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-        } catch (IOException ex) {
-            Logger.getLogger(ChessController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**

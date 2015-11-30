@@ -122,15 +122,15 @@ public class MyPanel extends javax.swing.JPanel {
             if ((currentY - startY) % space >= 25) {
                 j = (currentY - startY) / space + 1;
             }
-            if (i >= 0 && j >= 0) {
+            if (i >= 0 && j >= 0 && getArr()[i][j] == 0 && getOpponentArr()[i][j] == 0) {
                 getArr()[i][j] = 1;
+                ChessJudge judge = new ChessJudge(getArr(), i, j);
+                if (judge.iswin()) {
+                    JOptionPane.showMessageDialog(null, "你已取得胜利");
+                }
                 setIsMyTurn(0);
                 setIsGo(1);
             }
-        }
-        ChessJudge judge = new ChessJudge(getArr(),i,j);
-        if(judge.iswin()){
-            System.out.println("123");
         }
         this.repaint();
     }//GEN-LAST:event_formMouseClicked

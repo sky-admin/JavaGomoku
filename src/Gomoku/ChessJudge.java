@@ -21,9 +21,18 @@ public class ChessJudge {
     }
 
     public boolean iswin() {
-       if(heng()){
-           return true;
-       }
+        if (heng()) {
+            return true;
+        }
+        if (shu()) {
+            return true;
+        }
+        if(zuoxie()){
+            return  true;
+        }
+        if(youxie()){
+            return true;
+        }
         return false;
     }
 
@@ -31,17 +40,83 @@ public class ChessJudge {
         int time = 0;
         int x = i;
         int y = j;
-        while (arr[x][y] != 0 && x!=14) {
+        while (arr[x][y] != 0 && x != 14) {
             x++;
         }
         x--;
-        while(arr[x][y]!=0){
+        while (arr[x][y] != 0) {
             time++;
-            if(x>=0){
+            if (x >= 0) {
                 x--;
             }
         }
-        if (time == 4) {
+        if (time == 5) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean shu() {
+        int time = 0;
+        int x = i;
+        int y = j;
+        while (arr[x][y] != 0 && x!=14) {
+            y++;
+        }
+        y--;
+        while(arr[x][y]!=0){
+            time++;
+            if(y >=0){
+                y--;
+            }
+        }
+        if (time == 5) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+     public boolean zuoxie() {
+        int time = 0;
+        int x = i;
+        int y = j;
+        while (arr[x][y] != 0 && x != 14 && y != 14) {
+            x++;
+            y++;
+        }
+        x--;
+        y--;
+        while (arr[x][y] != 0) {
+            time++;
+            if (x >= 0 && y>=0) {
+                x--;
+                y--;
+            }
+        }
+        if (time == 5) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+      public boolean youxie() {
+        int time = 0;
+        int x = i;
+        int y = j;
+        while (arr[x][y] != 0 && x != -1 && y != 14) {
+            y++;
+            x--;
+        }
+        y--;
+        x++;
+        while (arr[x][y] != 0) {
+            time++;
+            if (x >= 0 && y>=0) {
+                y--;
+                x++;
+            }
+        }
+        if (time == 5) {
             return true;
         } else {
             return false;

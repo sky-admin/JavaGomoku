@@ -117,6 +117,10 @@ public class MyPanel extends javax.swing.JPanel {
         if (i >= 0 && j >= 0) {
             getArr()[i][j] = 1;
         }
+        ChessJudge judge = new ChessJudge(getArr(),i,j);
+        if(judge.iswin()){
+            System.out.println("123");
+        }
         this.repaint();
     }//GEN-LAST:event_formMouseClicked
 

@@ -6,6 +6,7 @@ package Gomoku;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,6 +14,9 @@ import java.awt.Graphics;
  */
 public class MyPanel extends javax.swing.JPanel {
 
+    private int isGo;
+    private int isMyTurn;
+    private int isWin;
     int startX = 40;
     int startY = 40;
     int lineNum = 15;
@@ -29,6 +33,9 @@ public class MyPanel extends javax.swing.JPanel {
      * Creates new form MyPanel
      */
     public MyPanel() {
+        isGo = 0;
+        isMyTurn = 0;
+        isWin = 0;
         for (int i = 0; i < lineNum; i++) {
             for (int j = 0; j < lineNum; j++) {
                 arr[i][j] = 0;
@@ -44,6 +51,7 @@ public class MyPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.black);
@@ -54,7 +62,6 @@ public class MyPanel extends javax.swing.JPanel {
         for (int i = 0; i < lineNum; i++) {
             g.drawLine(startX, startY + space * i, startX + space * (lineNum - 1), startY + space * i);
         }
-
 
         for (int i = 0; i < lineNum; i++) {
             for (int j = 0; j < lineNum; j++) {
@@ -99,23 +106,27 @@ public class MyPanel extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        currentX = evt.getX();
-        currentY = evt.getY();
-        int i = -1, j = -1;
-        if ((currentX - startX) % space <= 15) {
-            i = (currentX - startX) / space;
-        }
-        if ((currentX - startX) % space >= 25) {
-            i = (currentX - startX) / space + 1;
-        }
-        if ((currentY - startY) % space <= 15) {
-            j = (currentY - startY) / space;
-        }
-        if ((currentY - startY) % space >= 25) {
-            j = (currentY - startY) / space + 1;
-        }
-        if (i >= 0 && j >= 0) {
-            getArr()[i][j] = 1;
+        if (getIsMyTurn() == 1) {
+            currentX = evt.getX();
+            currentY = evt.getY();
+            int i = -1, j = -1;
+            if ((currentX - startX) % space <= 15) {
+                i = (currentX - startX) / space;
+            }
+            if ((currentX - startX) % space >= 25) {
+                i = (currentX - startX) / space + 1;
+            }
+            if ((currentY - startY) % space <= 15) {
+                j = (currentY - startY) / space;
+            }
+            if ((currentY - startY) % space >= 25) {
+                j = (currentY - startY) / space + 1;
+            }
+            if (i >= 0 && j >= 0) {
+                getArr()[i][j] = 1;
+            }
+            setIsMyTurn(0);
+            setIsGo(1);
         }
         this.repaint();
     }//GEN-LAST:event_formMouseClicked
@@ -148,5 +159,47 @@ public class MyPanel extends javax.swing.JPanel {
      */
     public void setOpponentArr(int[][] opponentArr) {
         this.opponentArr = opponentArr;
+    }
+
+    /**
+     * @return the isGo
+     */
+    public int getIsGo() {
+        return isGo;
+    }
+
+    /**
+     * @param isGo the isGo to set
+     */
+    public void setIsGo(int isGo) {
+        this.isGo = isGo;
+    }
+
+    /**
+     * @return the isMyTurn
+     */
+    public int getIsMyTurn() {
+        return isMyTurn;
+    }
+
+    /**
+     * @param isMyTurn the isMyTurn to set
+     */
+    public void setIsMyTurn(int isMyTurn) {
+        this.isMyTurn = isMyTurn;
+    }
+
+    /**
+     * @return the isWin
+     */
+    public int getIsWin() {
+        return isWin;
+    }
+
+    /**
+     * @param isWin the isWin to set
+     */
+    public void setIsWin(int isWin) {
+        this.isWin = isWin;
     }
 }

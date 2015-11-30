@@ -124,9 +124,9 @@ public class MyPanel extends javax.swing.JPanel {
             }
             if (i >= 0 && j >= 0) {
                 getArr()[i][j] = 1;
+                setIsMyTurn(0);
+                setIsGo(1);
             }
-            setIsMyTurn(0);
-            setIsGo(1);
         }
         this.repaint();
     }//GEN-LAST:event_formMouseClicked

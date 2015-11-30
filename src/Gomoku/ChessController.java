@@ -102,7 +102,7 @@ public class ChessController extends Thread{
         String[] ss = orgrins.split(";");
         String s = ss[0];
         if (ss[1].equals("1")) {
-            System.out.println("123");
+            //System.out.println("123");
             panel.setIsMyTurn(1);
         }
         int num=(int)Math.sqrt(s.length());

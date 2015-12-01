@@ -51,6 +51,7 @@ public class ChessController extends Thread{
             ServerSocket serverSocket = new  ServerSocket(50000);
             Socket client=serverSocket.accept();
             JOptionPane.showMessageDialog(null, "有客户端链接到了本机的50000端口,游戏开始,我方先走.");
+            panel.setIsMyTurn(1);
             input=new BufferedReader(new InputStreamReader(client.getInputStream()));
             output=new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
         } catch (IOException ex) {
@@ -59,7 +60,6 @@ public class ChessController extends Thread{
     }
      public void run(){
          if (status == 0) {
-             panel.setIsMyTurn(1);
              this.server();
          }
          if(status == 1){
@@ -90,11 +90,14 @@ public class ChessController extends Thread{
         if (panel.getIsGo()==1) {
             temp+=";1";
             panel.setIsGo(0);
+        }else{
+            temp+=";0";
         }
         if (panel.getIsWin()==0) {
             temp+=";0";
         }else{
             temp+=";1";
+            panel.setIsWin(0);
         }
         return temp;
     }   
@@ -104,6 +107,9 @@ public class ChessController extends Thread{
         if (ss[1].equals("1")) {
             //System.out.println("123");
             panel.setIsMyTurn(1);
+        }
+        if (ss[2].equals("1")) {
+            JOptionPane.showMessageDialog(null, "对方已取得胜利");
         }
         int num=(int)Math.sqrt(s.length());
         int[][] temp=new int[num][num];

@@ -126,6 +126,7 @@ public class MyPanel extends javax.swing.JPanel {
                 getArr()[i][j] = 1;
                 ChessJudge judge = new ChessJudge(getArr(), i, j);
                 if (judge.iswin()) {
+                    setIsWin(1);
                     JOptionPane.showMessageDialog(null, "你已取得胜利");
                 }
                 setIsMyTurn(0);

@@ -48,9 +48,9 @@ public class ChessController extends Thread{
     }
     public void server(){
         try {
-            ServerSocket serverSocket = new  ServerSocket(50000);
+            ServerSocket serverSocket = new  ServerSocket(Integer.parseInt(port));
             Socket client=serverSocket.accept();
-            JOptionPane.showMessageDialog(null, "有客户端链接到了本机的50000端口,游戏开始,我方先走.");
+            JOptionPane.showMessageDialog(null, "有客户端链接到了本机的"+port+"端口,游戏开始,我方先走.");
             panel.setIsMyTurn(1);
             input=new BufferedReader(new InputStreamReader(client.getInputStream()));
             output=new PrintWriter(new OutputStreamWriter(client.getOutputStream()));

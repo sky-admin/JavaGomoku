@@ -73,6 +73,11 @@ public class MyFrame extends javax.swing.JFrame {
         jTextField3.setText("50000");
 
         jLabel4.setText("authored by skyadmin");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout myPanel1Layout = new javax.swing.GroupLayout(myPanel1);
         myPanel1.setLayout(myPanel1Layout);
@@ -150,6 +155,11 @@ public class MyFrame extends javax.swing.JFrame {
         cc.setPort(port);
         cc.start();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "本项目由skyadmin制作，已在github上进行开源，项目地址：https://github.com/sky-admin/JavaGomoku");
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments

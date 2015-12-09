@@ -37,8 +37,10 @@ public class MyFrame extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Socket五子棋");
 
         jButton1.setText("作服务器");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -70,32 +72,34 @@ public class MyFrame extends javax.swing.JFrame {
 
         jTextField3.setText("50000");
 
+        jLabel4.setText("authored by skyadmin");
+
         javax.swing.GroupLayout myPanel1Layout = new javax.swing.GroupLayout(myPanel1);
         myPanel1.setLayout(myPanel1Layout);
         myPanel1Layout.setHorizontalGroup(
             myPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myPanel1Layout.createSequentialGroup()
-                .addContainerGap(677, Short.MAX_VALUE)
+            .addGroup(myPanel1Layout.createSequentialGroup()
+                .addContainerGap(646, Short.MAX_VALUE)
                 .addGroup(myPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(myPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myPanel1Layout.createSequentialGroup()
-                        .addGroup(myPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(myPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4)
+                    .addGroup(myPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(myPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextField3))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(myPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jButton1))
                             .addGroup(myPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2)))
-                        .addGap(31, 31, 31))))
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(myPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(45, 45, 45))
         );
         myPanel1Layout.setVerticalGroup(
             myPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,7 +120,9 @@ public class MyFrame extends javax.swing.JFrame {
                 .addGroup(myPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(315, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(123, 123, 123))
         );
 
         getContentPane().add(myPanel1, java.awt.BorderLayout.CENTER);
@@ -185,6 +191,7 @@ public class MyFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

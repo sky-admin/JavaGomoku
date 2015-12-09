@@ -30,9 +30,11 @@ public class ChessController extends Thread{
     private String port;
     int[][] arr;
     int[][] opponentArr;
+    private int isOppWin;
     public ChessController(MyPanel panel,int status){
         this.status = status;
         this.panel=panel;
+        isOppWin = 0;
     }
     public void client(){
         try {
@@ -74,10 +76,18 @@ public class ChessController extends Thread{
                 opponentArr=stringToArr(input.readLine());
                 panel.setOpponentArr(opponentArr);
                 panel.repaint();
+                isOver();
                 Thread.sleep(1000);
             } catch (Exception ex) {
                 Logger.getLogger(MyPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+    }
+     
+    public void isOver(){
+        if (isOppWin == 1) {
+            isOppWin = 0;
+            JOptionPane.showMessageDialog(null, "对方已取得胜利");
         }
     }
     
@@ -109,7 +119,7 @@ public class ChessController extends Thread{
             panel.setIsMyTurn(1);
         }
         if (ss[2].equals("1")) {
-            JOptionPane.showMessageDialog(null, "对方已取得胜利");
+            isOppWin = 1;
         }
         int num=(int)Math.sqrt(s.length());
         int[][] temp=new int[num][num];
